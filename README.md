@@ -5,7 +5,13 @@
 - 统计
 - 排序
 - 过滤
-
+```
+ import re
+ def remove_symbol(s):
+     reg = re.compile(r'[\s#,%]')
+     s = reg.sub('-',s)
+     return s.split('-')
+```
 **pyspark_rdd_exercise2：对RDD进行相关操作**
 
 顾客消费分析：
