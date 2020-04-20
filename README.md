@@ -28,3 +28,24 @@
 -  统计每个user的平均影评电影数量
 -  统计全局的平均分
 -  高分电影(超过3分)的平均分
+
+**pyspark_dataframe_exercise：**
+- 格式调整
+- 生成新字段
+- 排序
+- 均值
+- 最值
+
+```
+from pyspark.sql.functions import format_number
+
+# 格式调整
+desc.select(desc['summary'], format_number(desc['Open'].cast('float'), 2).alias('Open'), 
+            format_number(desc['High'].cast('float'), 2).alias('High'),
+            format_number(desc['Low'].cast('float'), 2).alias('Low'), 
+            format_number(desc['Close'].cast('float'), 2).alias('Close'),
+            format_number(desc['Volume'].cast('float'), 2).alias('Adj Close')).show()
+
+# 生成新字段HV Ratio
+df.withColumn('HV Ratio', df['High'] / df['Volume']).select('HV Ratio').show()
+```
